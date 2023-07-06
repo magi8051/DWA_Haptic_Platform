@@ -1,0 +1,58 @@
+# @file
+#                    I2CHapticDxe.INF
+#
+#
+#  Copyright (c) 2020 - 2021 Qualcomm Technologies, Inc. All rights reserved.
+#
+#
+#
+
+#=============================================================================
+#                              EDIT HISTORY
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+#
+#
+# when       who      what, where, why
+# --------   ---      --------------------------------------------------------
+# 08/01/21   tqt      Initial version
+#
+#=============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = I2CHapticDxe
+  FILE_GUID                      = EE01101E-503D-4333-B2E8-E836E2927A6E
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = I2CHapticDxeInitialize
+
+[Sources.common]
+  dw7917_uefi.c
+  haptic_hv_uefi_wav.c
+  I2CHapticDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  UefiLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  I2CApiLib
+  UefiBootServicesTableLib
+  BaseLib
+  QcomLib
+
+[Protocols]
+  gEfiTLMMProtocolGuid
+  gQcomI2CProtocolGuid
+  gQcomI2CHapticProtocolGuid
+
+[Depex]
+ TRUE
+

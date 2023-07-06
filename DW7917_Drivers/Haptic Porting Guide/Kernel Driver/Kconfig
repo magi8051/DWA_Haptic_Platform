@@ -1,0 +1,12 @@
+config DW791X
+	tristate "DW791x driver for HAPTIC"
+	default n
+	help
+	 DW791x driver for Haptic
+
+config DW791X_A2V
+	tristate "DW791x driver with A2V"
+	depends on DW791X
+	default n
+	help
+	 DW791x driver with A2V

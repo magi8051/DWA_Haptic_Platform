@@ -1,0 +1,72 @@
+&qupv3_se2_i2c{
+    status = "ok";
+    haptic_hv@59 {
+        compatible = "dongwoon,haptic_hv"
+        reg = <0x59>
+        irq-gpio = < &tlmm 102 0 >;
+        reset-gpio = <&tlmm 101 0 >;
+        pinctrl-names = "default";
+        pinctr1-0 = < &gpio102_input_pull_up &haptic_default>;
+        f0_pre = < 1700 >;
+        f0_cail_percent = /bits/ 8 < 5 >;
+        status = "ok";
+    };
+};
+
+&tlmm{
+    qupv3 se4 i2c pins: qupv3 se4 i2c pins {
+        qupv3 se4 i2c active: qupv3 se4 i2c active {
+            mux {
+                pins = "gpio96"，"gpio97";
+                function ="qup4";
+            };
+
+            config {
+                pins = "gpio96","gpio97";
+                drive-strength = <2>;
+                bias-disable;
+            };
+        };
+
+        qupv3 se4 i2c sleep: qupv3 se4 i2c sleep {
+            mux {
+                pins = "gpio96"，"gpio97";
+                function ="gpio";
+            };
+
+            config {
+                pins = "gpio96", "qpio97"
+                drive-strength =<2>;
+                bias-pull-down;
+            };
+        };
+    };
+    
+    gpio102 input pull up: gpio102 input pull up {
+        mux {
+            pins = "qpio102";
+            function ="gpio";
+        };
+    
+        config {
+            pins = "gpio102";
+            drive-strength = <2>;
+            bias-pull-up;
+            input-enable;
+        };  
+    };
+
+    haptic default: haptic default {
+        mux {
+            pins = "gpio101";
+            function = "gpio";
+        };
+
+        config {
+            pins = "gpio101";
+            drive-strength = <2>;
+            bias-pull-up;
+            output-high;
+        };
+    };
+};
